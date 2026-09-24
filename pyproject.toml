@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crest-recommendation"
+version = "0.1.0"
+description = "Temporal record screening and statistical promotion control for LLM recommendation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["networkx>=3.1,<4", "certifi>=2024.8.30"]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.8,<4"]
+download = ["huggingface-hub>=0.24.7,<2"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

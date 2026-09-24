@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "status": "fixed_preprocessing_protocol",
+  "preprocessing": {
+    "min_history": 1,
+    "max_history_export": 50,
+    "positive_rating_threshold": 4.0,
+    "split_quantiles": [
+      0.7,
+      0.8,
+      0.9
+    ],
+    "split_names": [
+      "train",
+      "development",
+      "calibration",
+      "test"
+    ],
+    "example_policy": "latest_eligible_positive_per_user_per_split",
+    "metadata_policy": "static_catalog_snapshot_no_historical_metadata_claim",
+    "duplicate_policy": "retain_distinct_source_rows_with_stable_surrogate_ids"
+  },
+  "datasets": {
+    "amazon-2018-all-beauty": {
+      "edition": "UCSD Amazon Reviews 2018, full All_Beauty category, updated metadata",
+      "raw_subdir": "amazon-2018-all-beauty",
+      "source_page": "https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/",
+      "usage": "Research use with the dataset's requested citation; upstream page supplies no general redistribution license. Raw data are not redistributed by this repository.",
+      "files": {
+        "reviews": {
+          "filename": "All_Beauty.json.gz",
+          "url": "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_v2/categoryFiles/All_Beauty.json.gz",
+          "expected_bytes": 46650072,
+          "published_rows": 371345,
+          "sha256": "a430509b38ff244fb75a84213e82ae64dc735158587687c80e86465d286bf22d"
+        },
+        "metadata": {
+          "filename": "meta_All_Beauty.json.gz",
+          "url": "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_v2/metaFiles2/meta_All_Beauty.json.gz",
+          "expected_bytes": 10349695,
+          "published_rows": 32992,
+          "sha256": "f2da6049903fc132cbcf9a45c03128ab65ba7140e29691469ecd8ce839612ea3"
+        }
+      }
+    },
+    "steam": {
+      "edition": "UCSD Steam Video Game Data version 2, complete reviews and game metadata",
+      "raw_subdir": "steam",
+      "source_page": "https://cseweb.ucsd.edu/~jmcauley/datasets.html#steam_data",
+      "usage": "Research dataset with citations requested by the upstream page; no general redistribution license asserted. Raw data remain private local copies.",
+      "files": {
+        "reviews": {
+          "filename": "steam_reviews.json.gz",
+          "url": "https://cseweb.ucsd.edu/~wckang/steam_reviews.json.gz",
+          "expected_bytes": 1338063248,
+          "published_rows": 7793069
+        },
+        "metadata": {
+          "filename": "steam_games.json.gz",
+          "url": "https://cseweb.ucsd.edu/~wckang/steam_games.json.gz",
+          "expected_bytes": 2740516
+        }
+      }
+    },
+    "movielens-1m": {
+      "edition": "GroupLens MovieLens 1M, stable February 2003 release",
+      "raw_subdir": "movielens",
+      "source_page": "https://grouplens.org/datasets/movielens/1m/",
+      "usage": "Read the original README included in ml-1m.zip. Research use requires attribution; redistribution and commercial use require separate permission. No raw redistribution is performed.",
+      "files": {
+        "archive": {
+          "filename": "ml-1m.zip",
+          "url": "https://files.grouplens.org/datasets/movielens/ml-1m.zip",
+          "expected_bytes": 5917549,
+          "published_ratings": 1000209
+        }
+      }
+    }
+  }
+}
