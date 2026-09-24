@@ -76,7 +76,7 @@ class QwenEmbeddings:
             "forward_parameters": {"use_cache": False, "return_dict": True, "output_hidden_states": False, "output_attentions": False},
             "pooling_precision": "float32 attention-mask-weighted sum divided by nonpadding token count, followed by float32 L2 normalization",
             "special_token_pooling": "Every unmasked encoded token participates; add_special_tokens is explicitly configured",
-            "cache_namespace": CACHE_TABLE, "reproduction_status": "User-approved Qwen embedding substitution for original Gemma-1.1-2b-it; numerical or retrieval equivalence is not claimed"}
+            "cache_namespace": CACHE_TABLE, "reproduction_status": "Qwen embedding substitution for the original Gemma-1.1-2b-it encoder"}
         self._metadata_hash, self._live_hash, self._parameter_hash = digest(self._metadata), digest(self._live), digest(parameters)
         self._connection = loaded_ranker.cache.connection
         self._connection.execute(f"CREATE TABLE IF NOT EXISTS {CACHE_TABLE} (key TEXT PRIMARY KEY, payload TEXT NOT NULL)")

@@ -99,7 +99,7 @@ def run_smoke_test():
     assert record_metrics["fpr"] == 0
     return {
         "status": "passed",
-        "scope": "CPU verification with synthetic rankings; no model inference or research experiment",
+        "scope": "CPU verification with synthetic rankings",
         "checks": [
             "RRM escaping and candidate-label parsing",
             "identity-based screening with temporal references",

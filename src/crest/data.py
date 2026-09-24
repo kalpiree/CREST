@@ -95,7 +95,7 @@ def prepare_steam(games_path, reviews_path, output_path, max_reviews=100000, min
             "skipped_reviews": skipped_reviews,
             "min_history": min_history,
             "text_chars": text_chars,
-            "positive_definition": "Review occurrence as implicit positive; pilot engineering choice, not a paper-specified threshold",
+            "positive_definition": "Review occurrence as implicit positive",
             "cutoff_definition": "Last review in scanned prefix; history strictly earlier by date",
             "sampling_limit": "Bounded prefix and lexicographic user sample for infrastructure testing only",
             "split_status": "Pilot sequence draws only; no production development/calibration/test pools",

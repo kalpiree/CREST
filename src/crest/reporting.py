@@ -105,7 +105,7 @@ def summarize_results(rows, methods=None, *, k=5, bootstrap=False):
         "units": {"recall": "percent", "ndcg": "percent", "gmax": "fraction", "fpr": "percent"},
         "seed_group_units": "All per-seed metrics are fractions on [0,1].",
         "aggregation": "Sequence means within each seed, followed by an equally weighted mean of seed means. Utility and promotion share the all-method returned cohort with a valid clean reference. FPR averages sequence-local ratios on each method's returned sequences.",
-        "uncertainty": "Exact seed-group percentile resampling; descriptive stability intervals conditional on fixed calibration. No significance test or significance stars." if bootstrap else "No uncertainty or significance claim.",
+        "uncertainty": "Exact seed-group percentile resampling; descriptive stability intervals conditional on fixed calibration." if bootstrap else "Not computed.",
         "seed_groups": seed_groups,
         "methods": {},
     }

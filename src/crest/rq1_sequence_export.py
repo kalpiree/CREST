@@ -464,6 +464,6 @@ def export_rq1_sequences(database_path, manifest_path, output_path, frozen_seque
                   'observed_sequences_path': str(output / 'observed-sequences.json'), 'observed_sequences_sha256': file_digest(output / 'observed-sequences.json'),
                   'pool_path': str(output / 'window-pool.json'), 'window_counts': pool['window_counts'], 'source_partition_caveat': pool['coverage_caveat'],
                   'source_selection_ledger': str(output / 'source-selection-ledger') if 'structural_admissibility' in p else None,
-                  'is_full_reproduction': False, 'attack_protocol': 'Explicit zero-feedback development construction; no observed-ranking optimization or unimplemented rewriting is claimed'}
+                  'is_full_reproduction': False, 'attack_protocol': 'Fixed instruction-injection and history-manipulation constructions without ranking feedback'}
         _once(output / 'manifest.json', result)
         return result

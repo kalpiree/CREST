@@ -138,7 +138,7 @@ class ConstrainedLocalRanker(LocalRanker):
                 "maximum_k": MAX_DIAGNOSTIC_K,
                 "ranking_choice": "native greedy generation after masking tokens outside the trie; every legal child remains available",
                 "candidate_order": "unchanged input candidate order mapped to C0, C1, ...",
-                "scope": "small development diagnostic only; no full-paper decoding claim",
+                "scope": "Small development diagnostic",
                 "repair": False,
             },
         })

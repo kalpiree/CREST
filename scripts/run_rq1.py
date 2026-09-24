@@ -164,7 +164,7 @@ def create_plan(config_path, descriptors_path, runtime_path, output_path):
     _runtime(config, runtime)
     for cell in plan["matrix"]:
         _execution_config(config, cell)
-    artifact = {"schema_version": 1, "kind": "rq1_cli_plan", "status": "plan_only", "pins": pins, "code_identity": code_identity(), "dependency_plan": plan, "source_files_rehashed": True, "scope": "CLI and plan readiness do not claim completed attacks, experiments, or paper reproduction"}
+    artifact = {"schema_version": 1, "kind": "rq1_cli_plan", "status": "plan_only", "pins": pins, "code_identity": code_identity(), "dependency_plan": plan, "source_files_rehashed": True, "scope": "Validated dependency plan; execution pending"}
     artifact["sha256"] = digest(artifact)
     output = Path(output_path)
     if output.exists():
@@ -376,9 +376,9 @@ def run_plan(plan_path, output_dir, *, invocation_budget_seconds, unit_id=None, 
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Plan or execute immutable RQ1 artifacts; no production settings or attacks are invented.", epilog="Run budgets are cooperative. Use an external hard timeout for an in-flight GPU call. Inputs and frozen settings must already be complete.")
+    parser = argparse.ArgumentParser(description="Plan or execute RQ1 experiments.", epilog="Run budgets are cooperative. Use an external hard timeout for an in-flight GPU call. Inputs and frozen settings must already be complete.")
     commands = parser.add_subparsers(dest="command", required=True)
-    plan = commands.add_parser("plan", help="Validate inputs and write an immutable dependency plan; no model jobs")
+    plan = commands.add_parser("plan", help="Validate inputs and write an execution plan")
     for name in ("config", "descriptors", "runtime", "output"):
         plan.add_argument("--" + name, required=True)
     run = commands.add_parser("run", help="Verify the plan and resume globally ordered execution within both budgets")
@@ -390,7 +390,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if args.command == "plan":
         value = create_plan(args.config, args.descriptors, args.runtime, args.output)
-        print(f"Plan ready: {value['sha256']}; no model jobs launched")
+        print(f"Plan ready: {value['sha256']}")
         return 0
     value = run_plan(args.plan, args.output, invocation_budget_seconds=args.invocation_budget_seconds, unit_id=args.unit_id, max_phase=args.max_phase)
     print(f"RQ1 status: {value['status']}; cumulative seconds: {value['cumulative_seconds']:.3f}")

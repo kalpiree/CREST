@@ -124,7 +124,7 @@ def family_settings(source_attack, family):
                "provenance": {"original_attack_settings": copy.deepcopy(original),
                               "projection_implementation_sha256": file_hash(__file__),
                               "adaptation": "Reuse exactly selected original observed decisions; no attack regeneration or selection by effectiveness",
-                              "generation_scope": "Original T100 attack generation evidence retained; projected T20 evaluation is a disclosed adaptation"}}
+                              "generation_scope": "T20 evaluation projected from the original T100 attack generation"}}
     return {"status": "frozen", **content, "sha256": digest(content)}
 
 

@@ -195,7 +195,7 @@ def _finish(reference, observed, config, operations, permitted, ingestion, detai
     pair["observed"] = observed
     pair["evaluation"] = {**pair["evaluation"], "attacked_ids": sorted(counts), "affected_decisions": affected}
     frozen = {"status": "frozen", "parameters": {key: value for key, value in config.items() if key not in ("settings_sha256", "settings_provenance")}, "provenance": config["settings_provenance"], "sha256": config["settings_sha256"]}
-    pair["attack"] = {"name": config["attack_family"], "generator": generator, "protocol_id": config["protocol_id"], "settings": frozen, "query_budget": 0, "feedback_queries_used": 0, "feedback_protocol": "fixed construction without ranking-feedback optimization", "is_full_reproduction": False, "scope": "auditable development preparation; weaker than the paper's observed-ranking-feedback attack protocol", "include_unsuccessful_attempts": True, "achieved": achieved, **details}
+    pair["attack"] = {"name": config["attack_family"], "generator": generator, "protocol_id": config["protocol_id"], "settings": frozen, "query_budget": 0, "feedback_queries_used": 0, "feedback_protocol": "fixed construction without ranking-feedback optimization", "is_full_reproduction": False, "scope": "Fixed target-promotion construction without ranking feedback", "include_unsuccessful_attempts": True, "achieved": achieved, **details}
     pair.setdefault("protocol", {})["rq1_attack_preparation"] = {"generator": generator, "reference_digest": digest(reference), "is_full_reproduction": False}
     audit = {"status": "validated", "dataset": config["dataset"], "attack_family": config["attack_family"], "reference_digest": digest(reference), "pair_digest": digest(pair), "generator": generator, "permitted_edit_fields": permitted, "operations": operations, "attempt_status": "applied" if operations else "no_change", "selection_frozen_before_feedback": True, "include_unsuccessful_attempts": True}
     return {"pair": pair, "reference": copy.deepcopy(reference), "audit": audit, "ingestion": ingestion}
@@ -501,7 +501,7 @@ def bundle_rewriting_results(reference, results, frozen_settings, *, dataset):
                                    'distinct_manipulated_records': len(counts), 'manipulated_record_appearances': sum(counts.values()),
                                    'identity_manipulated_appearances': dict(counts), 'identity_recurrence_fractions': {k: v / len(observed) for k, v in counts.items()}},
                       'include_unsuccessful_attempts': True, 'is_full_reproduction': False,
-                      'scope': 'User-approved multiple existing records, one frozen target; each record optimized independently against the same original observed input, then composed without joint optimization'}
+                      'scope': 'Multiple existing records with one fixed target; records are optimized independently against the same original input and then combined'}
     audit = {'status': 'validated', 'dataset': dataset, 'attack_family': 'deceptive_text_rewriting', 'reference_digest': digest(reference),
              'pair_digest': digest(pair), 'generator': generator, 'permitted_edit_fields': {'item_text': [parameters['text_field']]},
              'operations': operations, 'attempt_status': 'applied' if operations else 'no_change',
